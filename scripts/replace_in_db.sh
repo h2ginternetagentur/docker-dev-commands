@@ -35,3 +35,29 @@ echo saved migrated file in $NEW_FILE_NAME
 
 echo "Use this to import the db into docker container:"
 echo "docker exec -it SQL_CONTAINER_NAME mysql -uDBUSER -pPASSWORD DB_NAME < $NEW_FILE_NAME"
+
+echo -en "Do you want to import into a docker Conteiner? (y|n) "
+read INTO_DOCKER
+
+if [[ $INTO_DOCKER != "y" ]]
+then
+  echo "ok goodby"
+  exit 0
+fi
+
+echo -en "Docker Container name? (eg: fca-mysql)\n"
+read SQL_CONTAINER_NAME
+
+echo -en "Docker DB User? (eg: fc_aarau)\n"
+read DB_USER
+
+echo -en "Docker DB Password? (eg: fc_aarau)\n"
+read DB_PASSWORD
+
+echo -en "Docker DB Name? (eg: fc_aarau)\n"
+read DB_NAME
+
+
+echo "execute: docker exec -it $SQL_CONTAINER_NAME mysql -u$DB_USER -p$DB_PASSWORD $DB_NAME < $NEW_FILE_NAME"
+docker exec -it $SQL_CONTAINER_NAME mysql -u$DB_USER -p$DB_PASSWORD $DB_NAME < $NEW_FILE_NAME
+
