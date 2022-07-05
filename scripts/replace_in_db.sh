@@ -58,6 +58,6 @@ echo -en "Docker DB Name? (eg: fc_aarau)\n"
 read DB_NAME
 
 
-echo "execute: docker exec -it $SQL_CONTAINER_NAME mysql -u$DB_USER -p$DB_PASSWORD $DB_NAME < $NEW_FILE_NAME"
+echo "execute: docker exec -i $SQL_CONTAINER_NAME mysql -u$DB_USER -p$DB_PASSWORD $DB_NAME < $NEW_FILE_NAME"
 docker exec -it $SQL_CONTAINER_NAME mysql -u$DB_USER -p$DB_PASSWORD $DB_NAME < $NEW_FILE_NAME
 
