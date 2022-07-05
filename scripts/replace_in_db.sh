@@ -1,5 +1,4 @@
 #!/bin/bash
-
 URL_REGEX='(https?|ftp|file|http)://[-[:alnum:]\+&@#/%?=~_|!:,.;]*[-[:alnum:]\+&@#/%=~_|]'
 
 echo -en  "Enter the filename:\n"
@@ -31,7 +30,8 @@ then
     exit 127;
 fi
 
-
 sed "s|$CURRENT_URL|$NEW_URL|g" $FILE_NAME > $NEW_FILE_NAME
-
 echo saved migrated file in $NEW_FILE_NAME
+
+echo "Use this to import the db into docker container:"
+echo "docker exec -it SQL_CONTAINER_NAME mysql -uDBUSER -pPASSWORD DB_NAME < $NEW_FILE_NAME"
